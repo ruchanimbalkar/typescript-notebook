@@ -1,0 +1,158 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# TypeScript\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let firstName: string;\nfirstName = \"Rucha\";\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'Rucha'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## any\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let something = \"tea\";\nsomething = 100;\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m100\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Type Annotation\n\nIn some situations, we’d like to declare a variable without an initial value while still ensuring that it will only ever be assigned values of a certain type. If left as any, TypeScript won’t be able to protect us from accidentally assigning a variable to an incorrect type that could break our code.\n\nWe can tell TypeScript what type something is or will be by using a type annotation.\n\nVariables can have type annotations (also known as type declarations) added just after their names. We provide a type annotation by appending a variable with a colon (:) and the type (e.g., number, string, or any).\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let mustBeAString: string;\nmustBeAString = \"Catdog\";\n\nmustBeAString = 1337;\n// Error: Type 'number' is not assignable to type 'string'\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m1337\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let phoneNumber: string;\n\nif (Math.random() > 0.5) {\n  phoneNumber = \"+61770102062\";\n} else {\n  phoneNumber = \"7167762323\";\n}\n\nconsole.log(phoneNumber);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "7167762323",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Arrays in TypeScript\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let names: string[] = [\"Danny\", \"Samantha\"];\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let randomArray: any[] = [\"Chikoo\", 20, true, null];\nconsole.log(randomArray);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 'Chikoo', 20, true, null ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Arrays:\nlet bestNumbers: number[] = [7, 77, 4];\nlet bestLunches: Array<string> = [\"chicken soup\", \"non-chicken soup\"];\nlet bestBreakfasts: string[] = [\n  \"scrambled eggs\",\n  \"oatmeal\",\n  \"tamago kake gohan\",\n  \"any kind of soup\",\n];\nlet bestBooleans: boolean[] = [true, false];\n\nconsole.log(bestNumbers);\nconsole.log(bestLunches);\nconsole.log(bestBreakfasts);\nconsole.log(bestBooleans);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 7, 77, 4 ]",
+                                "[ 'chicken soup', 'non-chicken soup' ]",
+                                "[",
+                                "  'scrambled eggs',",
+                                "  'oatmeal',",
+                                "  'tamago kake gohan',",
+                                "  'any kind of soup'",
+                                "]",
+                                "[ true, false ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
