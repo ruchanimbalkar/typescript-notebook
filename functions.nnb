@@ -291,7 +291,7 @@
         {
             "language": "markdown",
             "source": [
-                "Give\ntype annotations\nPreview: Docs Loading link description\nto function parameters.\nDeal with type annotations for optional parameters, which may have default values.\nUnderstand how TypeScript determines the return type of a function.\nExplicitly specify return types for\nfunctions\nPreview: Docs With functions, TypeScript infers the types of its parameters as well as any return value.\n, including for functions that don’t return anything.\nUse the above skills to diagnose and fix bugs in our code.\n"
+                "- Give type annotations to function parameters.\n- Deal with type annotations for optional parameters, which may have default values.\n- Understand how TypeScript determines the return type of a function.\n- Explicitly specify return types for functions, including for functions that don’t return anything.\n- Use the above skills to diagnose and fix bugs in our code.\n"
             ],
             "outputs": []
         }
