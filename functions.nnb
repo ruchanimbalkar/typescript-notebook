@@ -1,0 +1,299 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# TypeScript Functions\n\nIn TypeScript, function parameters may be given\ntype annotations\nPreview: Docs TypeScript uses type annotation to explicitly type things such as variables, functions, and classes.\nwith the same syntax as variable declarations: a colon next to the name. The type annotations ensure that the parameters are of the correct type:\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function greet(name: string) {\n  console.log(`Hello, ${name}!`);\n}\n\ngreet(\"Katz\"); // Prints: Hello, Katz\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello, Katz!",
+                                "Hello, 1337!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "By placing : string after the name parameter, we’re declaring that name is of type string. Any invocation of greet() should pass a value of type string as the first argument, or else an error will be thrown.s\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Parameters that we do not provide type annotations for are assumed to be of type any—the same way\nvariables are.\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello, 1337!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function printKeyValue(key: string, value) {\n  console.log(`${key}: ${value}`);\n}\n\nprintKeyValue(\"Courage\", 1337); // Prints: Courage: 1337\nprintKeyValue(\"Mood\", \"scared\"); // Prints: Mood: scared\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Courage: 1337",
+                                "Mood: scared",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Here, the parameter value is an any variable: it’s compatible with any type.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Optional Parameters\n\nTypeScript normally gives an error if we don’t provide a value for all arguments in a function. This isn’t always desirable; sometimes we’d like to skip providing values.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function greet(name: string) {\n  console.log(`Hello, ${name || \"Anonymous\"}!`);\n}\n\ngreet(\"Anders\"); // Prints: Hello, Anders!\ngreet(); // Prints: Hello, Anonymous!\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello, Anders!",
+                                "Hello, Anonymous!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "When the code snippet above is compiled to JavaScript, the greet() function will correctly print 'Hello, Anonymous!'. That’s because when no arguments are passed in, name has the falsy value undefined, which means that name || 'Anonymous' evaluates to 'Anonymous'. Since the final code works as intended, we want to prevent TypeScript from throwing errors:\n\nTo indicate that a parameter is intentionally optional, we add a ? after its name. This tells TypeScript that the parameter is allowed to be undefined and doesn’t always have to be provided.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function greet(name?: string) {\n  console.log(`Hello, ${name || \"Anonymous\"}!`);\n}\n\ngreet(); // Prints: Hello, Anonymous!\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function proclaim(status?: string) {\n  console.log(`I'm ${status || \"not ready...\"}`);\n}\n\nproclaim();\nproclaim(\"ready?\");\nproclaim(\"ready!\");\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "I'm not ready...",
+                                "I'm ready?",
+                                "I'm ready!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Optional Parameters\n\nIf a parameter is assigned a default value, TypeScript will infer the variable type to be the same as the default value’s type. (This is similar to how TypeScript infers the type of an initialized variable to be the same as the type of its initial value.)\n\nThe following code snippet logs a string to greet a user’s name, and defaults to the name 'Anonymous' if no name is provided.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function greet(name = \"Anonymous\") {\n  console.log(`Hello, ${name}!`);\n}\n\ngreet(\"Babu\");\ngreet(\"Chikoo\");\ngreet(\"Janu\");\ngreet();\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello, Babu!",
+                                "Hello, Chikoo!",
+                                "Hello, Janu!",
+                                "Hello, Anonymous!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The function greet() can receive a string or undefined as its name parameter—if any other type is provided as an argument, TypeScript will consider that a type error.\n\nThis is a cleaner way of getting the same functionality we had in the previous exercise. There, we used ? to mark the name parameter as optional. But parameters with default values don’t need a ? after their name, since assigning a default value already implies that they’re optional parameters.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Inferring Return Types\n\nTypeScript can also infer the types of values returned by\nfunctions.It does this by looking at the types of the values after a function’s return statements.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function createGreeting(name: string) {\n  return `Hello, ${name}!`;\n}\n\nconst myGreeting = createGreeting(\"Aisle Nevertell\");\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Here’s how TypeScript can infer myGreeting above to be of type string:\n\n1. createGreeting()’s return statement is followed by a string variable, so createGreeting() is inferred to return string.\n2. createGreeting('Aisle Nevertell') therefore must result in a value of type string.\n3. myGreeting is initialized to createGreeting('Aisle Nevertell'), which is a value with the type string.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Void Return Type\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function logGreeting(name: string) {\n  console.log(`Hello, ${name}!`);\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The function logGreeting() simply logs a greeting to the console. There is no returned value, so we must treat the return type as void. A proper type annotation for this function would look like this:\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function logGreeting(name: string): void {\n  console.log(`Hello, ${name}!`);\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Documenting Functions\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "/**\n * This is a documentation comment\n */\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Documentation comments are especially useful for documenting\nfunctions. We place a function’s documentation comment in the code directly above the function declaration. We can use special tags within the comment to highlight certain aspects of the function. We can use @param to describe each of the function’s parameters, and we can use @returns to describe what the function returns:\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "/**\n * Returns the sum of two numbers.\n *\n * @param x - The first input number\n * @param y - The second input number\n * @returns The sum of `x` and `y`\n *\n */\nfunction getSum(x: number, y: number): number {\n  return x + y;\n}\n\nconsole.log(getSum(23, 16));\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "39",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "/**\n * Returns nothing.\n *\n * @param status - The status\n * @param repeat - The number\n * @returns void\n *\n */\nfunction proclaim(status = \"not ready...\", repeat = 1) {\n  for (let i = 0; i < repeat; i += 1) {\n    console.log(`I'm ${status}`);\n  }\n}\n\nproclaim(\"ready to go\", 3);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "I'm ready to go",
+                                "I'm ready to go",
+                                "I'm ready to go",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Give\ntype annotations\nPreview: Docs Loading link description\nto function parameters.\nDeal with type annotations for optional parameters, which may have default values.\nUnderstand how TypeScript determines the return type of a function.\nExplicitly specify return types for\nfunctions\nPreview: Docs With functions, TypeScript infers the types of its parameters as well as any return value.\n, including for functions that don’t return anything.\nUse the above skills to diagnose and fix bugs in our code.\n"
+            ],
+            "outputs": []
+        }
+    ]
+}
