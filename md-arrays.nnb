@@ -1,0 +1,81 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Multi-dimensional Arrays\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let arr: string[][] = [\n  [\"str1\", \"str2\"],\n  [\"more\", \"strings\"],\n];\nconsole.log(\"Array of string arrays : \", arr); //An array where every element has type string[]\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Array of string arrays [ [ 'str1', 'str2' ], [ 'more', 'strings' ] ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The empty array ([]) is compatible with any array type:\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let names: string[] = []; // No type errors.\nlet numbers: number[] = []; // No type errors.\nnames.push(\"Isabella\");\nnumbers.push(30);\nconsole.log(\"names[] =\", names);\nconsole.log(\"numbers[] =\", numbers);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "names[] = [ 'Isabella' ]",
+                                "numbers[] = [ 30 ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Arrays:\nlet bestNumbers: number[] = [7, 77, 4];\nlet bestLunches: string[] = [\"chicken soup\", \"non-chicken soup\"];\nlet bestBreakfasts: string[] = [\n  \"cereal\",\n  \"dosa\",\n  \"tamato omlet\",\n  \"any kind of paravta\",\n];\nlet bestBooleans: boolean[] = [true, false];\n\n// Multidimensional Arrays:\nlet bestMealPlan: string[][] = [\n  bestLunches,\n  bestBreakfasts,\n  [\"baked potato\", \"mashed potato\"],\n];\nconsole.log(\"bestMealPlan\", bestMealPlan);\nlet bestBooleansTwice: boolean[][] = [bestBooleans, bestBooleans];\nconsole.log(\"bestBooleansTwice\", bestBooleansTwice);\nlet numbersMulti: number[][][] = [\n  [[1], [2, 3]],\n  [[7], bestNumbers],\n];\nconsole.log(\"numbersMulti\", numbersMulti);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "bestMealPlan [",
+                                "  [ 'chicken soup', 'non-chicken soup' ],",
+                                "  [ 'cereal', 'dosa', 'tamato omlet', 'any kind of paravta' ],",
+                                "  [ 'baked potato', 'mashed potato' ]",
+                                "]",
+                                "numbersMulti [ [ [ 1 ], [ 2, 3 ] ], [ [ 7 ], [ 7, 77, 4 ] ] ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
